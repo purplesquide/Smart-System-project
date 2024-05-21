@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Diagnosis</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            margin-left: 19%;
+            max-width: 800px;
+            margin-top: 90px;
+            padding: 40px;
+            border-style: double;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 30px;
+        }
+
+        .form-container {
+            margin-top: 50px;
+            display: flex;
+            justify-content: center;
+            margin-bottom: 40px;
+        }
+
+        .form-container form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .form-container select {
+            margin-bottom: 20px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .form-container button {
+            background-color: #3584d9;
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .form-container button:hover {
+            background-color: #3584d9;
+        }
+
+        .prediction {
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .disease {
+            margin-bottom: 20px;
+        }
+
+        .note {
+            margin-bottom: 20px;
+            width: calc(100% - 48px); /* Adjust width to match input fields */
+            max-width: 800px; /* Match container max-width */
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .back-button-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 40px;
+}
+
+.back-button {
+  background-color: #3584d9;
+  color: white;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  text-decoration: none;
+}
+
+.back-button:hover {
+  background-color: #2c6fb1;
+}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Select User for Diagnosis</h1>
+        <div class="form-container">
+            <form action="{{ url_for('diagnosis') }}" method="post">
+                <select name="user_id">
+                    {% for user in users %}
+                    <option value="{{ user.id }}">{{ user.first_name }} {{ user.last_name }}</option>
+                    {% endfor %}
+                </select>
+                <label for="note">Note:</label>
+                <textarea name="note" id="note" rows="4" cols="50"></textarea>
+                <button type="submit">Diagnose</button>
+            </form>
+        </div>
+        {% if prediction %}
+        <div class="prediction">
+            <h2>Prediction Result</h2>
+            <p>{{ prediction }}</p>
+        </div>
+        
+        {% endif %}
+    </div>
+    <div class="back-button-container">
+        <a href="{{ url_for('doctor_dashboard') }}" class="back-button">Back To Dashboard</a>
+      </div>
+</body>
+</html>

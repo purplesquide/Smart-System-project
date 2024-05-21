@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Patient Notifications</title>
+    <style>
+         h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 30px;
+        }
+        /* Notification Container */
+.notification {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 16px;
+    margin: 16px 0;
+    background-color: #f9f9f9;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s;
+}
+
+/* Notification Hover Effect */
+.notification:hover {
+    background-color: #f1f1f1;
+}
+
+/* Notification Text */
+.notification p {
+    margin: 8px 0;
+    color: #333;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+/* Appointment and Diagnosis Details */
+.notification .details {
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: 1px solid #ddd;
+    color: #666;
+    font-size: 13px;
+}
+
+/* Delete Button */
+.notification form {
+    display: inline-block;
+    margin-top: 12px;
+}
+
+.notification form input[type="submit"] {
+    background-color: #d9534f;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 8px 16px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.notification form input[type="submit"]:hover {
+    background-color: #c9302c;
+}
+.back-button-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 40px;
+}
+
+.back-button {
+  background-color: #3584d9;
+  color: white;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  text-decoration: none;
+}
+
+.back-button:hover {
+  background-color: #2c6fb1;
+}
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Notifications</h1>
+        {% for notification in notifications %}
+        <div class="notification">
+            <p>{{ notification.message }}</p>
+            <p>{{ notification.date }}</p>
+            <p>{{ notification.status }}</p>
+            
+            <!-- Appointment and Diagnosis details if available -->
+            {% if notification.appointment %}
+                <p>Appointment Date: {{ notification.appointment.date }}</p>
+                <p>Appointment Time: {{ notification.appointment.time }}</p>
+                <!-- Add more appointment details if necessary -->
+            {% endif %}
+            {% if notification.diagnosis %}
+                <p>Diagnosis: {{ notification.diagnosis.disease_name }}</p>
+                <p>Prediction: {{ notification.diagnosis.prediction_result }}</p>
+                <!-- Add more diagnosis details if necessary -->
+            {% endif %}
+    
+            <!-- Delete notification form -->
+            <form action="{{ url_for('delete_notification', notification_id=notification.id) }}" method="post">
+                <input type="submit" value="Delete">
+            </form>
+        </div>
+    {% endfor %}
+    </div>
+
+    <div class="back-button-container">
+        <a href="{{ url_for('patient_dashboard') }}" class="back-button">Back To Dashboard</a>
+      </div>
+</body>
+</html>

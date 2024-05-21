@@ -1,0 +1,20 @@
+
+
+Patient: male, 38 years old
+
+Medical History:
+
+- Pregnancies: 0
+- Glucose: 142 mg/dL
+- Blood Pressure: 125/82 mmHg
+- Skin Thickness: 32 mm
+- Insulin: 85 μU/mL
+- BMI: 29.0
+- Diabetes Pedigree Function: 0.85
+- Chest Pain Type: Typical Angina
+- Cholesterol: 205 mg/dL
+- Resting ECG: Abnormal
+- Max Heart Rate: 150 bpm
+- Exercise-Induced Angina: yes
+- Oldpeak: 2.0
+- ST Slope: Flat

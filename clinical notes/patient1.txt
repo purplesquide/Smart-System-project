@@ -1,0 +1,18 @@
+Patient: Female, 38 years old
+
+Medical History:
+
+Pregnancies: 0
+Glucose: 135 mg/dL
+Blood Pressure: 130/85 mmHg
+Skin Thickness: 28 mm
+Insulin: 80 μU/mL
+BMI: 27.5
+Diabetes Pedigree Function: 0.80
+Chest Pain Type: Absent
+Cholesterol: 190 mg/dL
+Resting ECG: Normal
+Max Heart Rate: 160 bpm
+Exercise-Induced Angina: Absent
+Oldpeak: 1.2
+ST Slope: Upsloping

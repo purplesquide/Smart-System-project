@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="css/make-appointment.css" />
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: "Roboto", sans-serif;
+            background-color: #f0f0f0;
+            padding: 10px;
+        }
+        .appointment-container {
+            width: 60%;
+            margin: 50px auto;
+            padding: 20px;
+            background: linear-gradient(to right, #3584d9, #0a7482);
+            color: #fff;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
+        }
+        .appointment-container h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .appointment-container form {
+            display: flex;
+            flex-direction: column;
+        }
+        .appointment-container form label {
+            margin-bottom: 10px;
+        }
+        .appointment-container form input,
+        .appointment-container form select {
+            padding: 10px;
+            margin-bottom: 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.2rem;
+        }
+        .appointment-container form input:focus,
+        .appointment-container form select:focus {
+            outline: none;
+        }
+        .appointment-container form input[type="submit"] {
+            padding: 10px;
+            background-color: #fff;
+            color: #3498db;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            margin-top: 10px;
+        }
+        .appointment-container form input[type="submit"]:hover {
+            background-color: #08b9e5;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <div class="appointment-container">
+        <h2>Make an Appointment</h2>
+        <form action="{{ url_for('make_appointment') }}" method="post">
+            <label for="doctor">Choose a doctor:</label>
+            <select id="doctor" name="doctor">
+                {% for doctor in doctors %}
+                <option value="{{ doctor.id }}">{{ doctor.name }}</option>
+                {% endfor %}
+            </select>
+            <label for="date">Choose a date:</label>
+            <input type="date" id="date" name="date" min="" />
+            <label for="time">Choose a time:</label>
+            <input type="time" id="time" name="time" />
+            <label for="phone">Phone Number:</label>
+            <input type="tel" id="phone" name="phone" />
+            <label for="address">Address:</label>
+            <input type="text" id="address" name="address" />
+            <input type="submit" value="Submit" />
+        </form>
+    </div>
+    <script>
+        const today = new Date().toISOString().split("T")[0];
+        document.getElementById("date").value = today;
+        document.getElementById("date").setAttribute("min", today);
+    </script>
+</body>
+</html>
